@@ -1,3 +1,4 @@
+import Footer from '@/components/footer/Footer';
 import Layout from '@/components/layout/layout'
 import '@/styles/globals.css'
 import { useRouter } from 'next/router'
@@ -10,8 +11,11 @@ export default function App({ Component, pageProps }) {
 
   return( 
     <>
-      {router == "/404" ? (
-        <Component {...pageProps}/>
+      {router =="/game" ? (
+        <>
+          <Component {...pageProps}/>
+          <Footer/>
+        </>
       ) : (
         <Layout>
            <Component {...pageProps}/>

@@ -9,7 +9,7 @@ const font = Sigmar({
 const NotFound = () => {
 
     return (
-        <div className={`w-full h-screen flex justify-center items-center ${font.className} `}>
+        <div className={`w-full h-[74vh] flex justify-center items-center ${font.className} `}>
             <div className='flex flex-col gap-16'>
                 <span className='text-center text-4xl'>
                     it seems that you are LOST
