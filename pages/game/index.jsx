@@ -11,7 +11,7 @@ const font = Sigmar({
 
 const index = () => {
 
-    const winCondition = ["a,b,c","a,e,i","a,e,g,h","a,d,g","a,d,e,f","a,d,e,i","a,b,c,d","b,e,h","b,d,e,f","c,f,i","c,e,g","d,e,f","d,g,h,i","g,h,i"]
+    const winCondition = [['a','b','c'],"a,e,i","a,d,g","b,e,h","c,f,i","c,e,g","d,e,f","g,h,i"]
 
     const cross = []
     const circle = []
@@ -24,14 +24,16 @@ const index = () => {
                     element.innerHTML = "<p>&#10006;</p>" ;
                     let elemUnit = element.getAttribute("unit")
                     cross.push(elemUnit)
-                    console.log(cross.sort().toString());
+                    console.log(cross.sort());
                     let crossData = cross.sort().toString()
                     console.log(crossData);
                     
-                    if(crossData.length > 3 ){
+                    if(crossData.length >= 3 ){
                       let winCheckCross = winCondition.find(chosenCross => {
                             return chosenCross === crossData
                        });
+                       let some = winCondition.includes(crossData)
+                        console.log(some); 
                        if (winCheckCross) {
                           let table = document.querySelector("table")
                           let pElem = document.querySelector("p")
