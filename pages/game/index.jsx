@@ -13,7 +13,7 @@ const index = () => {
 
     const winCondition = [['a','b','c'],["a","e","i"],["a","d","g"],["b","e","h"],["c","f","i"],["c","e","g"],["d","e","f"],["g","h","i"]]
 
-    const cross = []
+    const crosses = []
     const circle = []
 
     useEffect(() => {
@@ -23,30 +23,18 @@ const index = () => {
                 if(element.innerHTML === ""){
                     element.innerHTML = "<p>&#10006;</p>" ;
                     let elemUnit = element.getAttribute("unit")
-                    cross.push(elemUnit)
-                    console.log(cross.sort());
-                    let crossData = cross.sort().toString()
+                    crosses.push(elemUnit)
+                    console.log(crosses);
+                    let crossData = crosses.sort().toString()
                     console.log(crossData);
-                    
-                    if(crossData.length >= 3 ){
-                      let winCheckCross = winCondition.find(chosenCross => {
-                            return chosenCross === crossData
-                       });
-                       let some = winCondition.includes(crossData)
-                        console.log(some); 
-                       if (winCheckCross) {
-                          let table = document.querySelector("table")
-                          let pElem = document.querySelector("p")
-                          let button = document.querySelector("button")
-                            table.classList.add("hidden")
-                            pElem.textContent = "You Win"
-                            pElem.classList.replace("hidden","block")
-                            button.classList.replace("hidden","block")
-                            button.addEventListener("click",() =>{
-                                window.location.reload()
-                            })
-                       }
-                       console.log(winCheckCross);
+                    if (crosses.length >= 3) {
+                        const winCheck = winCondition.map(condition => {
+                            
+                            if (crossData.includes(condition.toString())) {
+                                return crossData.includes(condition.sort().toString())
+                            }
+                        })
+                       console.log(winCheck);
                     }
                 }
             })
