@@ -11,7 +11,7 @@ const font = Sigmar({
 
 const index = () => {
 
-    const winCondition = [['a','b','c'],"a,e,i","a,d,g","b,e,h","c,f,i","c,e,g","d,e,f","g,h,i"]
+    const winCondition = [['a','b','c'],["a","e","i"],["a","d","g"],["b","e","h"],["c","f","i"],["c","e","g"],["d","e","f"],["g","h","i"]]
 
     const cross = []
     const circle = []
