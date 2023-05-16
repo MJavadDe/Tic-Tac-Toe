@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import style from './../../styles/game.module.css'
 import CloseIcon from '@mui/icons-material/Close';
+import { motion } from 'framer-motion';
 import { Sigmar } from 'next/font/google';
 
 const font = Sigmar({
     weight:"400",
     subsets:["latin"]
 })
+
+
 
 
 const index = () => {
@@ -47,25 +50,36 @@ const index = () => {
         <>
             <p className={`w-[400px] h-[150px] text-center py-12 rounded-3xl mx-auto top-[10vh] relative transition-all duration-500 ${font.className} hidden text-white text-5xl shadow-2xl bg-green-900`}></p>
             <button className={`w-[400px] mt-5 h-[150px] text-center py-12 rounded-3xl mx-auto top-[10vh] relative transition-all duration-500 ${font.className} hidden text-white text-5xl shadow-2xl bg-black`}>reset the game</button>
-            <table className={`w-[450px] h-[450px] mx-auto top-[10vh] relative text-center transition-all duration-500 shadow-2xl rounded-3xl ${style.table}`}>
-                <tbody>
-                    <tr>
-                        <td unit="a"></td>
-                        <td unit="b"></td>
-                        <td unit="c"></td>
-                    </tr>
-                    <tr>
-                        <td unit="d"></td>
-                        <td unit="e"></td>
-                        <td unit="f"></td>
-                    </tr>
-                    <tr>
-                        <td unit="g"></td>
-                        <td unit="h"></td>
-                        <td unit="i"></td>
-                    </tr> 
-                </tbody>
-            </table>
+            <motion.div
+                 initial={{ y: -300, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 exit={{ y: 300, opacity: 0 }}
+                 transition={{
+                 duration: 0.8 ,
+                 type: "tween",
+                 stiffness: 260,
+                 damping: 20,}}
+             >
+                <table className={` table w-[450px] h-[450px] mx-auto top-[10vh] relative text-center transition-all duration-500 shadow-2xl rounded-3xl ${style.table}`}>
+                    <tbody>
+                        <tr>
+                            <td unit="a"></td>
+                            <td unit="b"></td>
+                            <td unit="c"></td>
+                        </tr>
+                        <tr>
+                            <td unit="d"></td>
+                            <td unit="e"></td>
+                            <td unit="f"></td>
+                        </tr>
+                        <tr>
+                            <td unit="g"></td>
+                            <td unit="h"></td>
+                            <td unit="i"></td>
+                        </tr> 
+                    </tbody>
+                </table>
+            </motion.div>
         </>
     );
 };

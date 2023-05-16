@@ -5,14 +5,17 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useRouter } from 'next/router';
 
 const font = Sigmar({
   weight:"400",
   subsets:["latin"]
 })
 const Footer = () => {
+
+    const router = useRouter()
     return (
-        <footer className={`${font.className} flex transition-all duration-500 bg-black text-white hover:bg-transparent hover:text-black w-full absolute bottom-0 justify-around p-5 items-center`}>
+        <footer className={`${font.className} flex transition-all duration-500 bg-black text-white hover:bg-transparent hover:text-black w-full ${router.asPath === "/game" ? "absolute" : "relative"} bottom-0 justify-around p-5 items-center`}>
             <div className="icons">
                 <span className=' flex gap-3'>
                     <Link href={"https://github.com/MJavadDe"} target='_blank'>
