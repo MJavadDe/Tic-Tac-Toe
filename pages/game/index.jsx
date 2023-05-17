@@ -28,18 +28,21 @@ const index = () => {
                     let elemUnit = element.getAttribute("unit")
                     crosses.push(elemUnit)
                     console.log(crosses);
-                    let crossData = crosses.sort().toString()
+                    let crossData = crosses.sort()
                     console.log(crossData);
-                    if (crosses.length >= 3) {
-                        const winCheck = winCondition.map(condition => {
-                            
-                            if (crossData.includes(condition.toString())) {
-                                return crossData.includes(condition.sort().toString())
-                            }
-                        })
-                       console.log(winCheck);
+                    
+                    if (crosses.length >= 4) {
+                            crossData.splice(2,1)
+                        
+                        console.log(crossData);
+                    
                     }
+                
+                
+                
                 }
+
+
             })
         })
     
@@ -63,19 +66,19 @@ const index = () => {
                 <table className={` table w-[450px] h-[450px] mx-auto top-[10vh] relative text-center transition-all duration-500 shadow-2xl rounded-3xl ${style.table}`}>
                     <tbody>
                         <tr>
-                            <td unit="a"></td>
-                            <td unit="b"></td>
-                            <td unit="c"></td>
+                            <td unit= {1} ></td>
+                            <td unit={2}></td>
+                            <td unit={3}></td>
                         </tr>
                         <tr>
-                            <td unit="d"></td>
-                            <td unit="e"></td>
-                            <td unit="f"></td>
+                            <td unit={4}></td>
+                            <td unit={5}></td>
+                            <td unit={6}></td>
                         </tr>
                         <tr>
-                            <td unit="g"></td>
-                            <td unit="h"></td>
-                            <td unit="i"></td>
+                            <td unit={7}></td>
+                            <td unit={8}></td>
+                            <td unit={9}></td>
                         </tr> 
                     </tbody>
                 </table>
