@@ -34,3 +34,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Deploy on Vercel
 
 it is uploaded on vercel for you to check out
+- (https://tic-tac-toe-zeta-lake.vercel.app)
