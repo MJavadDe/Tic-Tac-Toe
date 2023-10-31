@@ -24,7 +24,6 @@ const index = () => {
     const [playerOneMoves, setPlayerOneMoves] = useState([])
     const [playerTwoMoves, setPlayerTwoMoves] = useState([])
 
-    const [winner, setWinner] = useState()
     function winnerChecker() {
         if (playerOneMoves.length > 2 || playerTwoMoves.length > 2){
             if (scoreReader(playerOneMoves)){
@@ -36,6 +35,7 @@ const index = () => {
         }
     }
 
+
     function showWinner(name) {
         let p = document.querySelector("p")
         let restartButton = document.querySelector("button")
@@ -43,14 +43,16 @@ const index = () => {
         table.classList.add("hidden")
         p.textContent = `${name} is the WINNER`
         p.classList.remove("hidden")
-        restartButton.classList.remove("hidden")
+        restartButton.classList.remove("hidden");
+        document.querySelector(".cursor-auto").classList.add("hidden")
+
 
     }
     function scoreReader(scores) {
         let validation
         if (scores.length >= 3){
             winConditions.forEach(condition => {
-                isValid = condition.filter(elem => scores.includes(elem));
+                let isValid = condition.filter(elem => scores.includes(elem));
                 if (isValid.length ===3){
                     validation = true
                 }
@@ -89,6 +91,10 @@ const index = () => {
             element.addEventListener("click", handleClick);
         });
 
+        if (playerOneMoves.concat(playerTwoMoves).length ===9 ){
+            showWinner("nobody");
+        }
+
         console.log(turn);
         console.log(playerOneMoves,playerTwoMoves);
 
@@ -106,8 +112,8 @@ const index = () => {
             <Head>
                 <title>game center</title>
             </Head>
-            <p className={`w-[400px] h-[150px] text-center py-12 rounded-3xl mx-auto top-[10vh] relative transition-all duration-500 ${font.className} absolute hidden text-white text-5xl shadow-2xl bg-green-900`}>{winner}is the winner </p>
-            <button onClick={() => location.reload()} className={`w-[400px] mt-5 h-[150px] text-center py-12 rounded-3xl top-[10vh] transition-all absolute duration-500 ${font.className} hidden text-white text-5xl shadow-2xl bg-black`}>reset the game</button>
+            <p className={`z-[100] text-center py-12 rounded-3xl top-[10vh]  transition-all duration-500 ${font.className} m-auto hidden text-white text-5xl shadow-2xl bg-green-900`}>?is the winner </p>
+            <button onClick={() => location.reload()} className={`z-[100] text-center mt-24 py-12 rounded-3xl top-[10vh] transition-all duration-500 ${font.className} absolute hidden text-white text-5xl shadow-2xl bg-green-900`}>reset the game</button>
             <motion.div
                  initial={{ y: -300, opacity: 0 }}
                  animate={{ y: 0, opacity: 1 }}
@@ -118,7 +124,7 @@ const index = () => {
                  stiffness: 260,
                  damping: 20,}}
              >
-                <table className={` table w-[450px] h-[450px] mx-auto top-[10vh] relative text-center transition-all duration-500 shadow-2xl rounded-3xl ${style.table}`}>
+                <table className={`z-50 table w-[450px] h-[450px] mx-auto top-[10vh] relative text-center transition-all duration-500 shadow-2xl rounded-3xl ${style.table}`}>
                     <tbody>
                         <tr>
                             <td unit= {"a"} ></td>
