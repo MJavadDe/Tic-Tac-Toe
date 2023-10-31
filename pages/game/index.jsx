@@ -3,6 +3,7 @@ import style from './../../styles/game.module.css'
 import CloseIcon from '@mui/icons-material/Close';
 import { motion } from 'framer-motion';
 import { Sigmar } from 'next/font/google';
+import {router} from "next/client";
 
 const font = Sigmar({
     weight:"400",
@@ -48,6 +49,10 @@ const index = () => {
     
       
     }, [])
+
+    function goBack(){
+        router.push('/')
+    }
     
     return (
         <>
@@ -83,6 +88,7 @@ const index = () => {
                     </tbody>
                 </table>
             </motion.div>
+            <button className={`w-[100px] mt-5 h-[100px] right-10 text-center rounded-3xl mx-auto top-[10vh] absolute transition-all duration-500 ${font.className} text-white text-2xl shadow-2xl bg-black`}>Home</button>
         </>
     );
 };
