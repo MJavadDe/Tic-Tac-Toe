@@ -8,12 +8,12 @@ import { useEffect } from 'react';
 export default function App({ Component, pageProps }) {
   
     const router = useRouter().route
-    console.log(router.route);
+
 
   return( 
     <>
-      {router =="/game" ? (
-        <AnimatePresence mode='wait' initial={true}>
+      {router ==="/game" ? (
+        <AnimatePresence initial={true}>
           <Component {...pageProps}/>
           <motion.footer
                 initial={{ y: 0, opacity: 0 }}
