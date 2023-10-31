@@ -23,7 +23,8 @@ export default function App({ Component, pageProps }) {
                 duration: 0.8 ,
                 type: "tween",
                 stiffness: 260,
-                damping: 20,}}>
+                damping: 20,}}
+          key={"something"}>
                     
                 <Footer/>
                 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import style from './../../styles/game.module.css'
-import CloseIcon from '@mui/icons-material/Close';
 import { motion } from 'framer-motion';
 import { Sigmar } from 'next/font/google';
-import {router} from "next/client";
+import Head from "next/head";
+import {useRouter} from "next/router";
 
 const font = Sigmar({
     weight:"400",
@@ -15,47 +15,26 @@ const font = Sigmar({
 
 const index = () => {
 
+    const router = useRouter()
+
     const winCondition = [['a','b','c'],["a","e","i"],["a","d","g"],["b","e","h"],["c","f","i"],["c","e","g"],["d","e","f"],["g","h","i"]]
 
-    const crosses = []
-    const circle = []
+    const [turn, setTurn] = useState("player 1");
+
+    const [playerOneMoves, setPlayerOneMoves] = useState([])
+    const [playerTwoMoves, setPlayerTwoMoves] = useState([])
+
+
 
     useEffect(() => {
-        const tdElements = document.querySelectorAll("td");
-        tdElements.forEach((element,i) => {
-            element.addEventListener("click",() => {
-                if(element.innerHTML === ""){
-                    element.innerHTML = "<p>&#10006;</p>" ;
-                    let elemUnit = element.getAttribute("unit")
-                    crosses.push(elemUnit)
-                    console.log(crosses);
-                    let crossData = crosses.sort()
-                    console.log(crossData);
-                    
-                    if (crosses.length >= 4) {
-                            crossData.splice(2,1)
-                        
-                        console.log(crossData);
-                    
-                    }
-                
-                
-                
-                }
+        console.log(turn)
+    }, [turn]);
 
-
-            })
-        })
-    
-      
-    }, [])
-
-    function goBack(){
-        router.push('/')
-    }
-    
     return (
         <>
+            <Head>
+                <title>game center</title>
+            </Head>
             <p className={`w-[400px] h-[150px] text-center py-12 rounded-3xl mx-auto top-[10vh] relative transition-all duration-500 ${font.className} hidden text-white text-5xl shadow-2xl bg-green-900`}></p>
             <button className={`w-[400px] mt-5 h-[150px] text-center py-12 rounded-3xl mx-auto top-[10vh] relative transition-all duration-500 ${font.className} hidden text-white text-5xl shadow-2xl bg-black`}>reset the game</button>
             <motion.div
@@ -88,7 +67,8 @@ const index = () => {
                     </tbody>
                 </table>
             </motion.div>
-            <button className={`w-[100px] mt-5 h-[100px] right-10 text-center rounded-3xl mx-auto top-[10vh] absolute transition-all duration-500 ${font.className} text-white text-2xl shadow-2xl bg-black`}>Home</button>
+            <button onClick={() => router.push("/")} className={`w-[100px] mt-5 h-[100px] right-10 text-center rounded-3xl mx-auto top-[10vh] absolute transition-all duration-500 ${font.className} text-white text-2xl shadow-2xl bg-black`}>Home</button>
+            <button className={`cursor-auto p-2 mt-5 h-[100px] left-10 text-center rounded-3xl mx-auto top-[10vh] absolute transition-all duration-500 ${font.className} text-white text-2xl shadow-2xl bg-black`}>{turn}</button>
         </>
     );
 };
